@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.ozge.entity.Departments;
+import com.ozge.entity.Department;
 import com.ozge.entity.Jobs;
 
 public class HibernateTest {
