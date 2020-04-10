@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,10 +27,19 @@ public class Kurs {
 	private String kursadi;
 	
 	@Column(name="saat")
-	private int saat;
+	private Integer saat;
 	
-	@Column(name="ogretmen_id")
-	private int ogretmenid;
+	@ManyToOne //bir çok kurs aynı öğretmene gidebilir
+	@JoinColumn(name="ogretmen_id")
+	private Ogretmen ogretmen;
+
+	public Ogretmen getOgretmen() {
+		return ogretmen;
+	}
+
+	public void setOgretmen(Ogretmen ogretmen) {
+		this.ogretmen = ogretmen;
+	}
 
 	public int getId() {
 		return id;
@@ -46,20 +57,25 @@ public class Kurs {
 		this.kursadi = kursadi;
 	}
 
-	public int getSaat() {
+	public Integer getSaat() {
 		return saat;
 	}
 
-	public void setSaat(int saat) {
+	public void setSaat(Integer saat) {
 		this.saat = saat;
 	}
 
-	public int getOgretmenid() {
-		return ogretmenid;
+
+	public Kurs(String kursadi, Integer saat, Ogretmen ogretmen) {
+		super();
+		this.kursadi = kursadi;
+		this.saat = saat;
+		
+		this.ogretmen = ogretmen;
 	}
 
-	public void setOgretmenid(int ogretmenid) {
-		this.ogretmenid = ogretmenid;
+	public Kurs() {
+		super();
 	}
 	
 	

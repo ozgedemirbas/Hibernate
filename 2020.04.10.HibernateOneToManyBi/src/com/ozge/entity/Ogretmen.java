@@ -1,5 +1,8 @@
 package com.ozge.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -42,6 +46,10 @@ public class Ogretmen {
 	@Column(name="email")
 	private String email;
 
+	@OneToMany(mappedBy = "ogretmen", cascade=CascadeType.ALL) //Kurs sınıfındaki öğretmen alanı bu ilişkiyi yönetiyor. Kurstaki öğretmen nasıl map edildiyse bu kolon ona bakar :) 
+	// Cascade ile ilişkinin silindiği durumları kontrol edip ona göre işlem yapcak.
+	private List<Kurs> kurslar;  //dersleri ekleyip çıkarcak bir method yazmalıyız.
+	
 	public Integer getId() {
 		return id;
 	}
@@ -94,8 +102,24 @@ public class Ogretmen {
 	
 	}
 
+	public List<Kurs> getKurslar() {
+		return kurslar;
+	}
 
-	
+
+	public void setKurslar(List<Kurs> kurslar) {
+		this.kurslar = kurslar;
+	}
+
+	public void addKurs(Kurs kurs) {
+		
+		if (kurslar==null) {
+			kurslar=new ArrayList<Kurs>();
+		}
+		kurslar.add(kurs);
+		kurs.setOgretmen(this);
+		
+	}
 	
 	
 	
