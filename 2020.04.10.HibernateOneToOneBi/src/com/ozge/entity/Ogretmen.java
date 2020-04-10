@@ -29,7 +29,7 @@ public class Ogretmen {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)*/
 	private Integer id;
 	
-	@OneToOne(cascade=CascadeType.REMOVE) //bir ilişkinin getirdiğinin gereğini yapmak
+	@OneToOne(cascade=CascadeType.ALL) //bir ilişkinin getirdiğinin gereğini yapmak
 	@JoinColumn(name="ogretmendetay")
 	private OgretmenDetay ogretmenDetay;
 	

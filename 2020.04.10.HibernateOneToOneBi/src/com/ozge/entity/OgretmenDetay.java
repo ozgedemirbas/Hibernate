@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,13 +19,11 @@ public class OgretmenDetay {
 	@Column(name="id")
 	@SequenceGenerator(name="ogretmen_det_seq", sequenceName ="SEQ_OGRETMENDETAY", allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ogretmen_det_seq")
-	
-	
-	/*
-	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)*/
 	private Integer id;
+	
+	
+	@OneToOne (mappedBy="ogretmenDetay") //column olarak tanımlamıyorum ki ilişki var arada onu sağlayıp ikinc bir kanal açtım
+	private Ogretmen ogretmen;
 	
 	@Column(name="expertise")
 	private String expersite; 
@@ -47,6 +46,16 @@ public class OgretmenDetay {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+
+	public Ogretmen getOgretmen() {
+		return ogretmen;
+	}
+
+
+	public void setOgretmen(Ogretmen ogretmen) {
+		this.ogretmen = ogretmen;
 	}
 
 

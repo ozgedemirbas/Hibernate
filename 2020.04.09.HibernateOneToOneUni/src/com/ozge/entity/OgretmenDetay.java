@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class OgretmenDetay {
 	
 	
-	@Id //bu nesnenin unic anahtar olduğunu belşrtmem gerekiyor ıdenfier hatasında burası sorunlu oluyor belirtmem lazım
+	@Id //bu nesnenin unic anahtar olduğunu belirtmem gerekiyor (ıdenfier hatasında burası sorunlu oluyor belirtmem lazım)
 	@Column(name="id")
 	@SequenceGenerator(name="ogretmen_det_seq", sequenceName ="SEQ_OGRETMENDETAY", allocationSize = 1 )
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "ogretmen_det_seq")
